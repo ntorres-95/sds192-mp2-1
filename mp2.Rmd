@@ -1,7 +1,7 @@
 ---
 title: "Mini-Project 2"
-author: "Your Name Here"
-date: "October 31, 2017"
+author: "Nathalie Torres and Samah Majid"
+date: "March 22, 2018"
 output: html_document
 ---
 
@@ -23,6 +23,9 @@ library(tidyverse)
 Hello
 
 What a lovely day
+
+hello
+
 
 
 

@@ -19,5 +19,3 @@ load("contributions.rda")
 ```{r}
 library(tidyverse)
 ```
-
-Hello

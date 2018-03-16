@@ -20,12 +20,6 @@ load("contributions.rda")
 library(tidyverse)
 ```
 
-Hello
-
-What a lovely day
-
-hello
-
 
 
 

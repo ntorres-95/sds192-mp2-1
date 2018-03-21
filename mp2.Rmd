@@ -15,8 +15,9 @@ load("contributions.rda")
 ```{r, message = FALSE}
 library(tidyverse)
 library(ggplot2)
+library(wordcountaddin)
 ```
-We used the datasets *house_elections* and *contributions* from the Federal Election Commission to analyze candidates in the political parties, Democratic (D) and Republican (R), with candidate offices located in District 9. The states included in District 9 are the following: Arizona (AZ), California (CA), Florida (FL), Georgia (GA), Illinois (IL), Massachusetts (MA), Michigan (MI), North Carolina (NC), New Jersey (NJ), New York (NY), Ohio (OH), Pennsylvania (PA), Tennessee (TN), Texas (TX), Virginia (VA) and Washington (WA). We used this data to look at the total number of general votes and total amount of contributions made to each political party in the aforementioned states during the 2011-2012 federal election cycle. Some background information on the contributions dataset is that it contains each individual contribution or expenditure made to a candidate during the election cycle.  
+We used the datasets *house_elections* and *contributions* from the Federal Election Commission to analyze candidates in the political parties, Democratic (D) and Republican (R), with candidate offices located in District 9. The states included in District 9 are the following: Arizona (AZ), California (CA), Florida (FL), Georgia (GA), Illinois (IL), Massachusetts (MA), Michigan (MI), North Carolina (NC), New Jersey (NJ), New York (NY), Ohio (OH), Pennsylvania (PA), Tennessee (TN), Texas (TX), Virginia (VA) and Washington (WA). We used this data to look at the total number of general votes and total amount of contributions made to each political party in the aforementioned states during the 2011-2012 federal election cycle.   
 ```{r}
 district_9 <- house_elections %>%
   filter(district == "09", party %in% c("D", "R")) %>%
@@ -36,7 +37,8 @@ district_9_results +
 ```
 
 
-The graph above shows the number of general votes for each political party in District 9 for the election cycle. The x-axis represents the political party and the y-axis represents the total number of general votes gained. The color distinguishes how many of the candidates were incumbents in blue or not in red. From this graph, we can see which political party gained the highest number of general votes and compare them across the states included in District 9. For example, in FL, democratic candidates received more general votes than republican candidates did. In addition, for both political parties, the candidates were not incumbents, suggested by the color red. 
+The graph above shows the number of general votes for each political party in District 9 for the election cycle. The x-axis represents the political party and the y-axis represents the total number of general votes gained. The color distinguishes the total number of candidates who were incumbents in blue, and those who were not in red. From this graph, we can see which political party gained the highest number of general votes and compare them across the states included in District 9. For example, in FL, Democratic candidates received more general votes than Republican candidates did. In addition, for both political parties, the candidates were not incumbents, suggested by the color red. 
+
 
 ```{r}
 contributions_district_9 <- contributions %>%
@@ -54,19 +56,30 @@ district_9_results_2 <- ggplot(district_9_join, aes(party))
 ```
 ```{r}
 district_9_results_2 +
-  geom_bar(aes(fill = transaction_amt, color = incumbent)) +
+  geom_bar(aes(weight = transaction_amt, fill = incumbent)) +
   facet_wrap(~ state, ncol = 4, scales = "free_x") +
   ggtitle("Contributions to each political party in District 9") +
   scale_x_discrete(name = "Political Party") +
-  scale_y_continuous(name = "Amount of Contributions")
+  scale_y_continuous(name = "Amount of Contributions", labels = function(x) format(x, scientific = FALSE))
 ```
 
 
-The graph above shows the amount of contributions made to the separate parties in District 9 for the election cycle. The x-axis represents the party represented and the y-axis represents the total amount of contributions made. The graph also depicts the proportion of the representatives who are incumbents or not via color. From this graph, we can get a general idea of which state in District 9 has the highest contributions for their candidates and it also highlights which party is receiving what amount. For example, in FL, republican candidates received more contributions than democratic candidates did. In addition, for both political parties, the candidates were not incumbents, suggested by the red outline. 
+The graph above shows the amount of contributions made to the Democratic and Republican parties in District 9 for the election cycle. The x-axis demonstrates the party affiliation and the y-axis represents the total amount of contributions made. The contributions amount include each individual contribution or expenditure made to a candidate during the election cycle.  The color of the bars depict the proportion of the representatives who are incumbents or not. From this graph, we can get a general idea of which state in District 9 has the highest contributions for their candidates and it also highlights which party is receiving what amount. For example, in FL, republican candidates received more contributions than the democratic candidates. In addition, for both political parties, the candidates were not incumbents, as suggested by the color red.    
 
-From our analysis, we learned about the political representation of each state in District 9; furthermore, the cumulative amount of monetary contributions given to each political party as well as votes. We think it is important to understand the voting and funding aspects of any federal election cycle because by studying these characteristics, we can infer how much support each political party received from the public. For further research, it would be interesting to test the effect of incumbency on the likelihood of political representatives receiving more votes or contributions. 
+We find that Republican candidates who are incumbents received the most general votes in IN and VA whereas Democratic candidates who are incumbents received the most general votes in CA, IL, MA, MI, NJ, NY, OH, TN, TX, and WA. We find that none of the Republican and Democratic candidates who are incumbents received the most contributions. Interestingly enough some states had a mix of incumbency for the Democratic party. We decided not to look at PA since the state only records Republican candidates. From this, we interpret that incumbency for democratic candidates matters in terms of general votes as Democrats tend to receive more votes than Republicans when their candidates are incumbents. However, in the case of contributions, we can deduce that incumbency did not matter and more Republicans received greater contributions within the District 9 states. 
 
-[*Link to GitHub Repository*](https://github.com/ntorres-95/sds192-mp2-1)
+From our analysis, we learned about the political representation of each state in District 9; furthermore, the votes and cumulative amount of monetary contributions made to each political party. We think it is important to understand the voting and funding aspects of any federal election cycle because by studying these characteristics, we can infer how much support each political party received from the public. For further research, it would be interesting to test the effect of incumbency on the amount of contributions and votes received by the political representatives.
+
+
+```{r}
+wordcountaddin::text_stats("mp2.Rmd")
+```
+
+
+Link to GitHub Repository [^1]
+
+[^1]: https://github.com/ntorres-95/sds192-mp2-1
+
 
 
 

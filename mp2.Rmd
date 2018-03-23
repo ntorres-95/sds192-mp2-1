@@ -68,15 +68,13 @@ The graph above shows the amount of contributions made to the Democratic and Rep
 
 We find that Republican candidates who were incumbents received the most general votes in IN and VA whereas Democratic candidates who were incumbents received the most general votes in CA, IL, MA, MI, NJ, NY, OH, TN, TX, and WA. We find that none of the Republican and Democratic candidates who were incumbents received the most contributions. Interestingly enough, some states had a mix of incumbency for the Democratic party. We decided not to look at PA since the state only records Republican candidates. From this, we interpret that incumbency for Democratic candidates matters in terms of general votes as Democrats tend to receive more votes than Republicans when their candidates were incumbents. However, in the case of contributions, we can deduce that incumbency does not matter and more Republicans received greater contributions within the District 9 states. 
 
-From our analysis, we learned about the political representation of each state in District 9; furthermore, the votes and cumulative amount of monetary contributions made to each political party. We think it is important to understand the voting and funding aspects of any federal election cycle because by studying these characteristics, we can infer how much support each political party received from the public. For further research, it would be interesting to test the effect of incumbency on the amount of contributions and votes received by political representatives.
+From our analysis, we learned about the political representation of each state in District 9; furthermore, the votes and cumulative amount of monetary contributions made to each political party. We think it is important to understand the voting and funding aspects of any federal election cycle because by studying these characteristics, we can infer how much support each political party received from the public. For further research, it would be interesting to test the effect of incumbency on the amount of contributions and votes received by political representatives.[^1]
 
 
 ```{r}
 wordcountaddin::text_stats("mp2.Rmd")
 ```
 
-
-Link to GitHub Repository [^1]
 
 [^1]: https://github.com/ntorres-95/sds192-mp2-1
 
